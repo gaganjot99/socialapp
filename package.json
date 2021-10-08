@@ -4,6 +4,7 @@
   "description": "Application for uploading photos and stuff",
   "main": "server.js",
   "scripts": {
+    "dev": "parcel src/app.html",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "start": "node server.js",
     "lint": "eslint  \"src/**/*.{js,jsx}\" --quiet"
@@ -30,5 +31,8 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
-  }
+  },
+  "browserslist":[
+    "last 2 Chrome versions"
+  ]
 }
