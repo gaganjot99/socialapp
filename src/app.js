@@ -8,8 +8,6 @@ class App extends React.Component{
         this.state={
             username:"user__name",
             
-
-
         }
     }
 
@@ -25,18 +23,18 @@ render(){
    
     <div className="activityboard">
        {pics.map(item=>{
-           return (<Photo key = {item} />)
+           return (<Photo key = {item} username={"username"+item}/>)
        })} 
     </div>
     <footer>
         <div className="timeline">
-        <i class="bi bi-house-door-fill"></i>
+        <i className="bi bi-house-door-fill"></i>
         </div>
         <div className="upload">
-        <i class="bi bi-plus-square-fill"></i>
+        <i className="bi bi-plus-square-fill"></i>
         </div>
         <div className="profile">
-        <i class="bi bi-person-circle"></i>
+        <i className="bi bi-person-circle"></i>
         </div>
     </footer>
 
