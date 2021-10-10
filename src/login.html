@@ -17,12 +17,13 @@
     <h1 class="heading">Pandora</h1>
     <div class="box">
         <header class='box-header'>Login</header>
-        <form class='form'>
+        <form  class='form' action="/login" method="post">
             <label for="username"></label>
             <input name="username" type="text" placeholder="UserName" required>
             <label for="password"></label>
             <input name="password" type="password" placeholder="password" required>
-            <input class="btn" type="submit" value="Login">
+            <input class="btn" type="submit" value="Login" >
+            <a class="signing" href="/signup">Create account</a>
         </form>
     </div>
 </div>

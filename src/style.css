@@ -3,6 +3,20 @@
 
   margin: 0 0;
 }
+
+.signing {
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 1em;
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+.signing:hover {
+  background-color: lightblue;
+  text-decoration: underline;
+}
+
 .heading {
   display: flex;
   justify-content: center;
