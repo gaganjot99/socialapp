@@ -92,6 +92,7 @@ header.heading {
   width: 96%;
   height: 75vh;
   background-color: khaki;
+  overflow: hidden;
 }
 
 .btn {
@@ -120,4 +121,8 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: grey;
+}
+
+img {
+  width: 100%;
 }
