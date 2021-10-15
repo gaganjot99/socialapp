@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
+
 const fs = require('fs/promises');
+const multer = require('multer');
+
 
 
 
@@ -14,11 +16,16 @@ server.listen(PORT,()=>{
     console.log(`Server is running at ${PORT}`);
 });
 
+
+
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
 let users = {};
 let user = '';
+const storage = multer.memoryStorage();
+const upload = multer({ dest: "media/uploaded/", storage : storage});
+
 
 fs.readFile('./src/user.json','utf8').then(data=>{
     
@@ -27,10 +34,12 @@ fs.readFile('./src/user.json','utf8').then(data=>{
     console.log(err);
 })
 
-let history = [];
+let history = {};
+let timeline = [];
+
 fs.readFile('./media/photo.json').then(data=>{
-    const seq = JSON.parse(data);
-    history = seq["history"];
+    history = JSON.parse(data);
+    timeline = history["history"];
     
 })
 
@@ -85,7 +94,7 @@ router.post('/signup',(req, res)=>{
 })
 
 router.get('/loggedin',(req, res)=>{
-    console.log(user)
+   
     res.json({"data": user});
 })
 
@@ -96,8 +105,18 @@ router.get('/App.js',(req, res)=>{
 router.get('/media*',(req, res)=>{
     const userpath = req.url.split("/media/");
     const userphoto = userpath[1];
-    res.sendFile(path.join(__dirname+`/media${history[userphoto]}.jpg`));
+    res.sendFile(path.join(__dirname+`/media${timeline[userphoto]}.jpg`));
+
+})
 
 
-    
+router.post('/upload',upload.single('uploaded_photo'), (req, res)=>{
+    users[user]["np"]+=1;
+    const indexnumber = users[user]["np"];
+    fs.writeFile("./src/user.json",JSON.stringify(users));
+fs.writeFile(`./media/${user}/${indexnumber}.jpg`,req.file.buffer);
+history["history"].unshift(`/${user}/${indexnumber}`);
+fs.writeFile(`./media/photo.json`, JSON.stringify(history));
+res.send("hmmm");
+
 })

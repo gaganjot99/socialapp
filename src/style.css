@@ -100,6 +100,7 @@ header.heading {
   margin: auto;
   font-size: medium;
   padding: 0.5em;
+  background-color: blanchedalmond;
 }
 .btn:hover {
   background-color: skyblue;
