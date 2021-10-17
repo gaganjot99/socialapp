@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Poppins&display=swap");
+
 * {
   box-sizing: border-box;
 
@@ -32,7 +34,9 @@
   text-align: center;
   padding: 0.2em 0;
   font-size: 2.5em;
-  font-family: "Libre Baskerville", serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+  color: goldenrod;
 }
 
 header.heading {
@@ -40,6 +44,8 @@ header.heading {
   position: fixed;
   top: 0;
   width: 100%;
+  padding: 5px 0;
+  height: 60px;
 }
 
 #container {
@@ -80,11 +86,16 @@ header.heading {
 }
 
 .activityboard {
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  font-family: "Nunito", sans-serif;
+  padding-top: 70px;
+  padding-bottom: 70px;
   background-color: hotpink;
   margin: auto;
-  width: 35%;
+  width: 600px;
+}
+
+.photocontainer {
+  margin-bottom: 30px;
 }
 
 .photo {
@@ -126,4 +137,52 @@ footer {
 
 img {
   width: 100%;
+}
+
+#profile_pic {
+  border-radius: 50%;
+  border: black 2px solid;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  flex-basis: 120px;
+  margin: 15px;
+}
+
+.profileheader {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.profileicon {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex-basis: 50px;
+  border-radius: 50%;
+  max-width: 60px;
+  margin-right: 15px;
+  max-height: 50px;
+}
+
+#alluploaded {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.profilepics {
+  flex-basis: 33%;
+}
+
+#profilespace {
+  height: 150px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+#usertitle {
+  text-align: center;
+  margin: auto;
+  padding-bottom: 15px;
 }

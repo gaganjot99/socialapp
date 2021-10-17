@@ -14,7 +14,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       username: "",
-      display : "timeline"
+      display : "timeline",
+      countofpics: 0,
+      history:['/jack_watson/12'] 
     }
 
     this.toggledisplay = this.toggledisplay.bind(this);
@@ -23,10 +25,16 @@ class App extends React.Component {
   componentDidMount(){
     fetch('/loggedin').then(data=>data.json()).then(result=> 
       {
-        this.setState({username: result.data});
+        this.setState({username: result.data,
+        countofpics: result.countofpics});
       }
       )
       .catch((e)=>{console.log(e)});
+      
+  fetch('/history').then(data=>data.json()).then(data=>{
+    this.setState({history: data.history.history});
+    
+  })
   }
 
   
@@ -38,23 +46,23 @@ class App extends React.Component {
   }
 
   render() {
-    const pics = [1, 2, 3, 4, 5, 6];
+    
     
     return (
       <div className="appcontainer">
         <header className="heading">
           <h4>pandora</h4>
+          <div className="profileheader"><div className="profileicon"><img  src="/profile/0" /></div>
           <h5>{this.state.username}</h5>
+          </div>
         </header>
 
         <div className="activityboard">
-        {/* {pics.map((item,i) => {
-            return <Photo key={item} index={i} username={"username" + item} />;
-          })} */}
+       
           
-          {this.state.display==="timeline"? pics.map((item,i) => {
-            return <Photo key={item} index={i} username={"username" + item} />;
-          }): this.state.display==="upload"? <Upload username={this.state.username}/> : <Profile username={this.state.username}/>}
+          {this.state.display==="timeline"? this.state.history.map((item,i) => {
+            return <Photo key={item} index={i} username={item.split('/')[1]} />;
+          }): this.state.display==="upload"? <Upload username={this.state.username}/> : <Profile countofpics={this.state.countofpics} username={this.state.username}/>}
         </div>
         <footer>
           <div className="timeline">

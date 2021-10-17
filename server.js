@@ -95,17 +95,34 @@ router.post('/signup',(req, res)=>{
 
 router.get('/loggedin',(req, res)=>{
    
-    res.json({"data": user});
+    res.json({"data": user,
+"countofpics":users[user]["np"]});
 })
 
 router.get('/App.js',(req, res)=>{
     res.sendFile(path.join(__dirname+'/dist/App.d36a57b6.js'))
 })
-
+router.get('/history',(req, res)=>{
+    res.json({history:history});
+})
 router.get('/media*',(req, res)=>{
     const userpath = req.url.split("/media/");
     const userphoto = userpath[1];
     res.sendFile(path.join(__dirname+`/media${timeline[userphoto]}.jpg`));
+
+})
+
+router.get('/profile*',(req, res)=>{
+    const userpath = req.url.split("/profile/");
+    const userphoto = userpath[1];
+    res.sendFile(path.join(__dirname+`/media/${user}/${userphoto}.jpg`));
+
+})
+
+router.get('/propic*',(req, res)=>{
+    const userpath = req.url.split("/propic/");
+    const userphoto = userpath[1];
+    res.sendFile(path.join(__dirname+`/media/${userphoto}.jpg`));
 
 })
 
@@ -117,6 +134,6 @@ router.post('/upload',upload.single('uploaded_photo'), (req, res)=>{
 fs.writeFile(`./media/${user}/${indexnumber}.jpg`,req.file.buffer);
 history["history"].unshift(`/${user}/${indexnumber}`);
 fs.writeFile(`./media/photo.json`, JSON.stringify(history));
-res.send("hmmm");
+res.end();
 
 })
