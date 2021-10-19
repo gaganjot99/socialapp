@@ -56,7 +56,7 @@ class App extends React.Component {
           <h5>{this.state.username}</h5>
           </div>
         </header>
-
+        <hr></hr>
         <div className="activityboard">
        
           
