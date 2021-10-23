@@ -107,7 +107,10 @@ hr {
   padding-bottom: 70px;
   background-color: white;
   margin: auto;
-  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
 }
 
 .photocontainer {
@@ -122,29 +125,31 @@ hr {
 .photo {
   margin: auto;
   width: 96%;
-  height: 75vh;
+
   background-color: rgb(153, 153, 150);
   overflow: hidden;
 }
 
-.reactions {
-  display: flex;
+button {
+  width: 100%;
+  height: 100%;
+}
 
-  justify-content: flex-start;
-  height: 50px;
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.reactions {
+  margin-top: 10px;
+  display: flex;
+  height: 30px;
   align-items: center;
 }
 
 .reaction {
-  margin-left: 23px;
-  margin-top: 15px;
-  width: 45px;
-}
-
-svg {
-  height: 35px;
-  width: 35px;
-  color: rgb(26, 25, 25);
+  margin-left: 5%;
+  height: 100%;
 }
 
 .btn {
@@ -166,14 +171,9 @@ input {
 }
 
 footer {
-  display: flex;
-  justify-content: center;
-
-  font-size: 2em;
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: rgb(255, 255, 255);
 }
 
 img {
@@ -231,4 +231,35 @@ img {
   text-align: center;
   margin: auto;
   padding-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+.controls div {
+  height: ;
+}
+
+@media only screen and (max-width: 480px) {
+  .photocontainer {
+    max-width: 95%;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .activityboard {
+  }
+  .photocontainer {
+    max-width: 45%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .photocontainer {
+    max-width: 30%;
+  }
 }

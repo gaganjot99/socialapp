@@ -36,10 +36,12 @@ fs.readFile('./src/user.json','utf8').then(data=>{
 
 let history = {};
 let timeline = [];
+let likes = [];
 
 fs.readFile('./media/photo.json').then(data=>{
     history = JSON.parse(data);
     timeline = history["history"];
+    likes = history["likes"]
     
 })
 
@@ -127,13 +129,15 @@ router.get('/propic*',(req, res)=>{
 })
 
 
-router.post('/upload',upload.single('uploaded_photo'), (req, res)=>{
+router.post('/upload',upload.single('myfile'), (req, res)=>{
+    console.log(history["history"]);
     users[user]["np"]+=1;
     const indexnumber = users[user]["np"];
     fs.writeFile("./src/user.json",JSON.stringify(users));
 fs.writeFile(`./media/${user}/${indexnumber}.jpg`,req.file.buffer);
 history["history"].unshift(`/${user}/${indexnumber}`);
+history["likes"].unshift(0);
 fs.writeFile(`./media/photo.json`, JSON.stringify(history));
-res.end();
+res.json({status:true});
 
 })

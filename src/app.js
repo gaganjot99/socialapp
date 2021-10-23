@@ -16,7 +16,8 @@ class App extends React.Component {
       username: "",
       display : "timeline",
       countofpics: 0,
-      history:['/jack_watson/12'] 
+      history:[],
+      likes:[] 
     }
 
     this.toggledisplay = this.toggledisplay.bind(this);
@@ -32,7 +33,7 @@ class App extends React.Component {
       .catch((e)=>{console.log(e)});
       
   fetch('/history').then(data=>data.json()).then(data=>{
-    this.setState({history: data.history.history});
+    this.setState({history: data.history.history,likes: data.history.likes});
     
   })
   }
@@ -61,18 +62,26 @@ class App extends React.Component {
        
           
           {this.state.display==="timeline"? this.state.history.map((item,i) => {
-            return <Photo key={item} index={i} username={item.split('/')[1]} />;
+            return <Photo key={item} index={i} likes={this.state.likes[i]} username={item.split('/')[1]} />;
           }): this.state.display==="upload"? <Upload username={this.state.username}/> : <Profile countofpics={this.state.countofpics} username={this.state.username}/>}
         </div>
-        <footer>
+        <footer className="controls">
           <div className="timeline">
-          <button id="timebtn" onClick={()=>{this.toggledisplay("timeline")}}><i className="bi bi-house-door-fill"></i></button>
+          <button id="timebtn" onClick={()=>{this.toggledisplay("timeline")}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-view-list" viewBox="0 0 16 16">
+  <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+</svg></button>
           </div>
           <div className="upload">
-            <button id="uploadbtn" onClick={()=>{this.toggledisplay("upload")}}><i className="bi bi-plus-square-fill"></i></button>
+            <button id="uploadbtn" onClick={()=>{this.toggledisplay("upload")}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg></button>
           </div>
           <div className="profile">
-          <button id="uploadbtn" onClick={()=>{this.toggledisplay("profile")}}><i className="bi bi-person-circle"></i></button>
+          <button id="uploadbtn" onClick={()=>{this.toggledisplay("profile")}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg></button>
           </div>
         </footer>
       </div>

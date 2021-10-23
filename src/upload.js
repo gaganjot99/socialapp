@@ -4,7 +4,7 @@ import React, {useState} from "react";
 
 
  const Upload = (props) => {
-     const [status, setStatus]=useState(true);
+     const [status, setStatus]=useState(false);
 
      
 
@@ -38,22 +38,44 @@ import React, {useState} from "react";
 
     const handleClick = (e) =>{
       e.preventDefault();
-      setStatus(true);
+      
       let preview = document.getElementById("preview");
       while(preview.hasChildNodes()){
       preview.removeChild(preview.firstChild);
       }
       let text = document.createElement('h2');
-      text.innerText = "Photo Uploaded";
+      text.innerText = "Uploading";
       preview.appendChild(text);
+      
+
+
+
+
+      let curFile = document.getElementById("uploadinput").files;
+    const formData = new FormData();
+    formData.append('myfile',curFile[0])
+      const requestOptions = {
+        method: 'POST',
+      
+        body: formData
+    };
+    fetch('/upload', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            preview.removeChild(preview.firstChild);
+            setStatus(data.status)});
+   
+      
+      
+
     }  
 
     return (
         <div>
-            <form action="/upload" method="post" encType="multipart/form-data">
+            <form id="form1" action="/upload" method="post" encType="multipart/form-data">
                 <label className="btn" htmlFor="uploadinput">Upload Image</label>
                 <input onChange={previewpic}  id="uploadinput" type='file' name="uploaded_photo" hidden></input>
-                <div className="photo" id="preview"></div>
+                <div className="photo" id="preview">{status?<h2>picture uploaded</h2>:null}</div>
                 <input type='submit' onClick={handleClick} value='Upload' disabled={status}></input>
             </form>
         </div>
