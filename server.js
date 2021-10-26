@@ -128,6 +128,14 @@ router.get('/propic*',(req, res)=>{
 
 })
 
+router.post('/like',express.text(),(req, res)=>{
+    let likestring=req.body;
+    likes=likestring.split(',');
+    history["likes"]=likes;
+    fs.writeFile(`./media/photo.json`, JSON.stringify(history));
+    res.json({status:'done'})
+})
+
 
 router.post('/upload',upload.single('myfile'), (req, res)=>{
     console.log(history["history"]);

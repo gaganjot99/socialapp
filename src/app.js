@@ -21,6 +21,7 @@ class App extends React.Component {
     }
 
     this.toggledisplay = this.toggledisplay.bind(this);
+    this.changelike=this.changelike.bind(this);
   }
 
   componentDidMount(){
@@ -37,7 +38,19 @@ class App extends React.Component {
     
   })
   }
-
+  changelike(i, action ){
+    let likes = this.state.likes;
+    if(action=='inc'){
+      likes[i]=likes[i]+1;
+    }
+    else if(action=='dec'&&likes[i]>0){
+     likes[i]=likes[i]-1;
+    }
+  this.setState( {
+    likes:likes
+  })
+  fetch('/like',{method:'POST',body:likes}).then(response=>response.json).then(response=>console.log(response)).catch(err=>{console.log(err)})
+  }
   
 
   toggledisplay(show){
@@ -62,7 +75,7 @@ class App extends React.Component {
        
           
           {this.state.display==="timeline"? this.state.history.map((item,i) => {
-            return <Photo key={item} index={i} likes={this.state.likes[i]} username={item.split('/')[1]} />;
+            return <Photo key={item} index={i} likes={this.state.likes[i]} username={item.split('/')[1]} changelike={this.changelike} />;
           }): this.state.display==="upload"? <Upload username={this.state.username}/> : <Profile countofpics={this.state.countofpics} username={this.state.username}/>}
         </div>
         <footer className="controls">

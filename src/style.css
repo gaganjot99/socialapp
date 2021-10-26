@@ -109,24 +109,41 @@ hr {
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-flow: row wrap;
 }
 
 .photocontainer {
   margin-bottom: 30px;
+  margin-top: -33px;
+  z-index: 0;
+  visibility: hidden;
+  position: relative;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.photocontainer:hover {
+  visibility: visible;
+  transition-delay: 300ms;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .photocontainer .profileheader {
-  margin-left: 10px;
-  margin-bottom: 11px;
+  margin-left: 13px;
+  margin-bottom: -35px;
+  z-index: 5;
+  position: relative;
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .photo {
   margin: auto;
   width: 96%;
-
-  background-color: rgb(153, 153, 150);
+  visibility: visible;
   overflow: hidden;
 }
 
@@ -141,9 +158,9 @@ svg {
 }
 
 .reactions {
-  margin-top: 10px;
+  margin-top: 0px;
   display: flex;
-  height: 30px;
+  height: 21px;
   align-items: center;
 }
 
@@ -194,23 +211,25 @@ img {
 .profileheader {
   display: flex;
   align-items: center;
-  font-size: 0.8em;
-
+  color: #141313;
+  border-radius: 25px;
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 0.9;
-  font-size: 17px;
+  font-size: 15px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .profileicon {
   display: flex;
   align-items: center;
   overflow: hidden;
-  flex-basis: 50px;
+  flex-basis: 30px;
   border-radius: 50%;
-  max-width: 60px;
+  max-width: 50px;
   margin-right: 15px;
-  max-height: 50px;
+  max-height: 30px;
 }
 
 #alluploaded {
@@ -233,6 +252,12 @@ img {
   padding-bottom: 15px;
 }
 
+.likes {
+  margin-left: 0.5em;
+  color: #4a4949;
+  font-size: 0.8em;
+}
+
 .controls {
   display: flex;
   flex-flow: row wrap;
@@ -250,7 +275,7 @@ img {
   }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 720px) {
+@media only screen and (min-width: 480px) and (max-width: 900px) {
   .activityboard {
   }
   .photocontainer {
