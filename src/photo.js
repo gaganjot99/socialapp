@@ -26,13 +26,14 @@ const Photo = (props) => {
 
   const togglemodel=()=>{
     setmodel(prev=>!prev);
+    console.log('something')
   }
   return (
-    <div className="photocontainer" onClick={togglemodel}>
+    <div className="photocontainer" >
      <div className="profileheader"><div className="profileicon"><img  src={profilesrc} /></div>
       <p>{props.username}</p>
       </div> 
-      <div className="photo">
+      <div className="photo" onClick={togglemodel}>
         <img src={src} />
       </div>
       <div className="reactions">
@@ -52,11 +53,13 @@ const Photo = (props) => {
       </div>
      
       
-{model?(<Photocard>
-      <div className="photocontainer">
-     <div className="profileheader"><div className="profileicon"><img  src={profilesrc} /></div>
+{model?(<Photocard><div className='model'>
+      <div id='modelcontainer' className="photocontainer">
+     <div id='modelheader' className="profileheader"><div className="profileicon"><img  src={profilesrc} /></div>
       <p>{props.username}</p>
-      </div> 
+      </div> <div onClick={togglemodel} className='closebtn'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg></div>
       <div className="photo">
         <img src={src} />
       </div>
@@ -76,6 +79,7 @@ const Photo = (props) => {
 </div>
       </div>
      
+      </div>
       </div>
      </Photocard>):null}
      </div>

@@ -125,6 +125,7 @@ hr {
   position: relative;
   background: rgb(255, 255, 255);
   border-radius: 10px;
+  width: fit-content;
 }
 
 .photocontainer:hover {
@@ -136,7 +137,7 @@ hr {
 }
 
 .photocontainer .profileheader {
-  margin-left: 13px;
+  margin-left: 2%;
   margin-bottom: -35px;
   z-index: 5;
   position: relative;
@@ -146,9 +147,8 @@ hr {
 
 .photo {
   margin: auto;
-  width: 96%;
+  width: 100%;
   visibility: visible;
-  overflow: hidden;
 }
 
 button {
@@ -169,8 +169,9 @@ svg {
 }
 
 .reaction {
-  margin-left: 5%;
+  margin-left: 3.5%;
   height: 100%;
+  margin-top: 1.5%;
 }
 
 .btn {
@@ -206,6 +207,19 @@ svg {
   background: #23796d;
 }
 
+.closebtn {
+  float: right;
+  margin-top: -6%;
+  margin-bottom: -3%;
+  height: 60px;
+  margin-right: -1%;
+}
+
+.closebtn svg:hover {
+  color: red;
+  background: lightblue;
+}
+
 input {
   font-family: "Rubik", sans-serif;
   margin-bottom: 2em;
@@ -220,7 +234,7 @@ footer {
 
 img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 75vh;
 }
 
 #profile_pic {
@@ -257,6 +271,32 @@ img {
   margin-right: 15px;
   max-height: 30px;
 }
+.model {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#modelcontainer {
+  visibility: visible;
+  border: gray solid 2px;
+  padding: 5px;
+  padding-top: 7px;
+  max-width: 75%;
+  max-height: 90%;
+}
+
+#modelheader {
+  margin-bottom: 1%;
+}
 
 #alluploaded {
   display: flex;
@@ -292,7 +332,7 @@ img {
 }
 
 .likes {
-  margin-left: 0.5em;
+  margin-left: 0.3em;
   color: #4a4949;
   font-size: 0.8em;
 }

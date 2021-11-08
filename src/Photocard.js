@@ -1,19 +1,23 @@
-import { useEffect } from "react";
-import ReactDOM from 'react-dom';
+import { useEffect, useRef } from "react";
+import {createPortal} from 'react-dom';
 
 const modelRoot = document.getElementById('model-root');
 const Photocard = (props)=>{
-    const el = document.createElement('div');
+    const elRef = useRef(null);
+    if(!elRef.current){
+        elRef.current = document.createElement('div');
+    }
+   
     useEffect(()=>{
-        modelRoot.appendChild(el)
+        modelRoot.appendChild(elRef.current)
 
-        return ()=>{ modelRoot.removeChild(el)} 
+        return ()=>{ modelRoot.removeChild(elRef.current)} 
            
         
     },[])
-    return ReactDOM.createPortal(
+    return createPortal(
         props.children,
-        el
+        elRef.current
     );
 } 
 
