@@ -18,7 +18,7 @@ const Profile = (props)=>{
        </div>
        <div id= "alluploaded">
        {arr.map((item,i)=>{
-           return (<img className="profilepics" src={item} key={i}></img>)
+           return (<div className="profilepics" ><img src={item} key={i}></img></div>)
        })}
        </div>
         </div>

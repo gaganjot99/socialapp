@@ -22,7 +22,7 @@
   justify-content: center;
   width: 100%;
   background: white;
-
+  z-index: 20;
   text-align: center;
   padding: 0.2em 0;
   font-size: 2.5em;
@@ -95,10 +95,14 @@ hr {
 }
 .form {
   height: 30vh;
-  /* border:darkorange 3px solid; */
+
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+}
+
+#form1 {
+  display: flex;
 }
 
 .activityboard {
@@ -136,7 +140,7 @@ hr {
   margin-bottom: -35px;
   z-index: 5;
   position: relative;
-  opacity: 0.5;
+
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -153,14 +157,14 @@ button {
 }
 
 svg {
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
 }
 
 .reactions {
   margin-top: 0px;
   display: flex;
-  height: 21px;
+  height: 40px;
   align-items: center;
 }
 
@@ -170,14 +174,36 @@ svg {
 }
 
 .btn {
-  width: 50%;
-  margin: auto;
   font-size: medium;
-  padding: 0.5em;
-  background-color: blanchedalmond;
+  padding: 0.7em 0.5em;
+  background-color: #670641;
+  margin: 30px 0;
+  color: white;
+  border: black solid 1px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .btn:hover {
-  background-color: skyblue;
+  background-color: #850953;
+}
+
+.uploadbtns {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.submitbtn {
+  padding: 0.5em;
+  background: #14463f;
+  color: white;
+  border: black solid 1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submitbtn:hover {
+  background: #23796d;
 }
 
 input {
@@ -189,12 +215,12 @@ input {
 
 footer {
   position: fixed;
-  bottom: 0;
-  width: 100%;
+  bottom: 30px;
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #profile_pic {
@@ -235,21 +261,34 @@ img {
 #alluploaded {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
+
+#preview {
+  min-height: 500px;
+  width: 500px;
+  background-color: grey;
+}
+
 .profilepics {
   flex-basis: 33%;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
 }
 
 #profilespace {
   height: 150px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 #usertitle {
   text-align: center;
-  margin: auto;
+  margin-top: auto;
   padding-bottom: 15px;
+  margin-bottom: auto;
 }
 
 .likes {
@@ -263,10 +302,29 @@ img {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 50px;
+  width: fit-content;
+  left: 42%;
+  border: gray solid 2px;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 21;
 }
+
+.controls div button {
+  border: white;
+  background: white;
+  padding: 0;
+}
+
+.controls div button:hover {
+  background-color: rgb(46, 28, 50);
+  color: white;
+}
+
 .controls div {
-  height: ;
+  height: 50px;
+  width: 61px;
 }
 
 @media only screen and (max-width: 480px) {
@@ -285,6 +343,6 @@ img {
 
 @media only screen and (min-width: 900px) {
   .photocontainer {
-    max-width: 30%;
+    max-width: 33%;
   }
 }

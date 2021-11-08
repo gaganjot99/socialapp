@@ -73,10 +73,13 @@ import React, {useState} from "react";
     return (
         <div>
             <form id="form1" action="/upload" method="post" encType="multipart/form-data">
-                <label className="btn" htmlFor="uploadinput">Upload Image</label>
-                <input onChange={previewpic}  id="uploadinput" type='file' name="uploaded_photo" hidden></input>
                 <div className="photo" id="preview">{status?<h2>picture uploaded</h2>:null}</div>
-                <input type='submit' onClick={handleClick} value='Upload' disabled={status}></input>
+               
+                <input onChange={previewpic}  id="uploadinput" type='file' name="uploaded_photo" hidden></input>
+                <div className='uploadbtns'>
+                    <label className="btn" htmlFor="uploadinput">Upload Image</label>
+                <input type='submit' onClick={handleClick} className='submitbtn' value='Upload' disabled={status}></input>
+                </div>
             </form>
         </div>
     );
