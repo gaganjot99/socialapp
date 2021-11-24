@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
   z-index: 20;
   text-align: center;
   padding: 0.2em 0;
@@ -68,12 +68,19 @@ hr {
   font-size: 16px;
 }
 
+#preview h2 {
+  text-align: center;
+  margin-top: 44%;
+  color: white;
+  font-size: 2.5rem;
+}
+
 #container {
-  background: white;
+  background: url("/bg/bg4.jpg");
 
   display: flex;
   flex-flow: column wrap;
-  /* border:crimson 3px solid; */
+  background-size: cover;
 }
 .box-header {
   text-align: center;
@@ -84,14 +91,12 @@ hr {
 .box {
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 4%;
-  border: darkgreen 3px solid;
-  width: 20vw;
+  border: #6e0b5a 3px solid;
   margin: 20vh auto;
-  padding: 10vh 4vh;
-  background-color: rgb(202, 136, 136);
-
+  padding: 15vh 4vh;
   height: 55vh;
   font-size: small;
+  background: rgba(255, 255, 255, 0.5);
 }
 .form {
   height: 30vh;
@@ -117,15 +122,23 @@ hr {
   flex-flow: row wrap;
 }
 
+.photogal {
+  display: flex;
+  justify-content: space-between;
+}
+
+#photogal {
+  width: 88%;
+}
+
 .photocontainer {
-  margin-bottom: 30px;
-  margin-top: -33px;
   z-index: 0;
   visibility: hidden;
   position: relative;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   width: fit-content;
+  margin-bottom: 4%;
 }
 
 .photocontainer:hover {
@@ -137,12 +150,17 @@ hr {
 }
 
 .photocontainer .profileheader {
-  margin-left: 2%;
-  margin-bottom: -35px;
   z-index: 5;
-  position: relative;
 
-  background: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(
+    to top,
+    rgba(239, 229, 229, 0),
+    rgba(40, 38, 38, 0.79)
+  );
+  position: absolute;
+  width: 100%;
+  color: white;
+  padding: 0.5% 2%;
 }
 
 .photo {
@@ -166,6 +184,15 @@ svg {
   display: flex;
   height: 40px;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  color: white;
+  bottom: 0.2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(239, 229, 229, 0),
+    rgba(40, 38, 38, 0.79)
+  );
 }
 
 .reaction {
@@ -209,7 +236,7 @@ svg {
 
 .closebtn {
   float: right;
-  margin-top: -6%;
+  margin-top: -8%;
   margin-bottom: -3%;
   height: 60px;
   margin-right: -1%;
@@ -234,7 +261,7 @@ footer {
 
 img {
   max-width: 100%;
-  max-height: 75vh;
+  max-height: 100%;
 }
 
 #profile_pic {
@@ -244,32 +271,30 @@ img {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
-  flex-basis: 120px;
-  margin: 15px;
+  flex-basis: 5em;
+  margin: 2em;
+  height: 5em;
 }
 
 .profileheader {
   display: flex;
   align-items: center;
   color: #141313;
-  border-radius: 25px;
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 0.9;
   font-size: 15px;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
 }
 
 .profileicon {
   display: flex;
   align-items: center;
   overflow: hidden;
-  flex-basis: 30px;
+  flex-basis: 50px;
   border-radius: 50%;
   max-width: 50px;
   margin-right: 15px;
-  max-height: 30px;
+  max-height: 50px;
 }
 .model {
   position: fixed;
@@ -288,21 +313,29 @@ img {
 #modelcontainer {
   visibility: visible;
   border: gray solid 2px;
-  padding: 5px;
-  padding-top: 7px;
+  padding: 1%;
   max-width: 75%;
   max-height: 90%;
+  overflow: hidden;
+}
+
+#modelcontainer .reactions {
+  position: static;
+  background: white;
+  color: black;
 }
 
 #modelheader {
-  margin-bottom: 1%;
+  position: static;
+  color: black;
+  background: white;
 }
 
 #alluploaded {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #preview {
@@ -322,19 +355,22 @@ img {
   height: 150px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: flex-start;
+  background: url("/bg/bg0.JPG");
 }
 #usertitle {
   text-align: center;
   margin-top: auto;
   padding-bottom: 15px;
   margin-bottom: auto;
+  font-size: 2rem;
+  color: white;
 }
 
 .likes {
   margin-left: 0.3em;
-  color: #4a4949;
   font-size: 0.8em;
+  margin-bottom: 0.5rem;
 }
 
 .controls {
@@ -353,7 +389,7 @@ img {
 
 .controls div button {
   border: white;
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
   padding: 0;
 }
 
@@ -367,22 +403,24 @@ img {
   width: 61px;
 }
 
+#modelcontainer .photo img {
+  height: 73vh;
+}
+
 @media only screen and (max-width: 480px) {
-  .photocontainer {
-    max-width: 95%;
+  .photocol {
+    flex-basis: 95%;
   }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 900px) {
-  .activityboard {
-  }
-  .photocontainer {
-    max-width: 45%;
+  .photocol {
+    flex-basis: 49%;
   }
 }
 
 @media only screen and (min-width: 900px) {
-  .photocontainer {
-    max-width: 33%;
+  .photocol {
+    flex-basis: 32.25%;
   }
 }
