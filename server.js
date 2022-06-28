@@ -7,20 +7,31 @@ const server = express();
 const router = express.Router();
 server.use("/", router);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
 });
 
+// express.urlencoded is used get diffrent parts of the form in diffrent variables
+
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
+
+//for responding static files like background images
+
 router.use("/bg", express.static("bg"));
+
+//multer is used to handle the image files are that are uploaded via form element
 
 const storage = multer.memoryStorage();
 const upload = multer({ dest: "media/uploaded/", storage: storage });
 
+//varibles to store user data
+
 let users = {};
 let user = "";
+
+//reading files for user data and history of media uploads
 
 fs.readFile("./src/user.json", "utf8")
   .then((data) => {
@@ -40,6 +51,8 @@ fs.readFile("./media/photo.json").then((data) => {
   likes = history["likes"];
 });
 
+//Next 4 functions are responsing to GET requests for different files like html, javascript and css
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/src/login.html"));
 });
@@ -56,6 +69,9 @@ router.get("/App.js", (req, res) => {
   res.sendFile(path.join(__dirname + "/dist/App.d36a57b6.js"));
 });
 
+//For POST request after user submits the login info with username and password
+//if info matches with record then main app page is sent or user is asked to make a new account
+
 router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -69,8 +85,10 @@ router.post("/login", (req, res) => {
   }
 });
 
+//This function handles the signup form submission. New user is added to the records
+//After submitting user is sent to the login page to login with the new account
+
 router.post("/signup", (req, res) => {
-  const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
 
@@ -91,22 +109,27 @@ router.post("/signup", (req, res) => {
   }
 });
 
+//logged user data is sent to front end applications.
+
 router.get("/loggedin", (req, res) => {
   res.json({ data: user, countofpics: users[user]["np"] });
 });
 
+//history of the uploaded media is sent
 
 router.get("/history", (req, res) => {
   res.json({ history: history });
 });
-router.get("/media/bg.JPG", (req, res) => {
-  res.sendFile(path.join(__dirname + "/media/bg.JPG"));
-});
+
+//media is sent according to the request
+
 router.get("/media*", (req, res) => {
   const userpath = req.url.split("/media/");
   const userphoto = userpath[1];
   res.sendFile(path.join(__dirname + `/media${timeline[userphoto]}.jpg`));
 });
+
+//users own uploaded content is sent
 
 router.get("/profile*", (req, res) => {
   const userpath = req.url.split("/profile/");
@@ -120,6 +143,8 @@ router.get("/propic*", (req, res) => {
   res.sendFile(path.join(__dirname + `/media/${userphoto}.jpg`));
 });
 
+//"likes" data is received and saved
+
 router.post("/like", express.text(), (req, res) => {
   let likestring = req.body;
   let temp = likestring.split(",");
@@ -128,6 +153,8 @@ router.post("/like", express.text(), (req, res) => {
   fs.writeFile(`./media/photo.json`, JSON.stringify(history));
   res.json({ status: "done" });
 });
+
+//handles POST request with image file and save in the user folder.
 
 router.post("/upload", upload.single("myfile"), (req, res) => {
   console.log(history["history"]);

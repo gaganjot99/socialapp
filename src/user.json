@@ -1,1 +1,4 @@
-{"jack_watson":{"password":"1234","np":7},"lexi_pelletier":{"password":"1234","np":5},"aditya_gupta":{"password":"2345","np":5},"kyle__brown":{"password":"1234","np":5},"sandy__nd":{"password":"1234","np":6},"camilla_shilling":{"password":"1234","np":5}}
+{
+  "jack_watson": { "password": "1234", "np": 8 },
+  "aditya_gupta": { "password": "2345", "np": 6 }
+}
