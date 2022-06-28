@@ -76,7 +76,7 @@ hr {
 }
 
 #container {
-  background: url("/bg/bg4.jpg");
+  background: url("../bg/bg4.jpg");
 
   display: flex;
   flex-flow: column wrap;
@@ -356,7 +356,7 @@ img {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
-  background: url("/bg/bg0.JPG");
+  background: url("../bg/bg0.JPG");
 }
 #usertitle {
   text-align: center;

@@ -20,6 +20,7 @@ router.use(express.json());
 //for responding static files like background images
 
 router.use("/bg", express.static("bg"));
+router.use(express.static("dist"));
 
 //multer is used to handle the image files are that are uploaded via form element
 
@@ -79,7 +80,7 @@ router.post("/login", (req, res) => {
   if (users[username] && users[username]["password"] === password) {
     user = username;
 
-    res.sendFile(path.join(__dirname + "/src/app.html"));
+    res.sendFile(path.join(__dirname + "/dist/app.html"));
   } else {
     res.send(`There is no ${username} in Pandora. Please make a new Account`);
   }
