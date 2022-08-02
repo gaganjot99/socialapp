@@ -26,7 +26,7 @@ const Photo = (props) => {
     console.log("something");
   };
   return (
-    <div className="photocontainer">
+    <div className="photocontainer" style={{ "--i": props.index }}>
       <div className="profileheader">
         <div className="profileicon">
           <img src={profilesrc} />

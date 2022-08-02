@@ -139,6 +139,8 @@ hr {
   border-radius: 10px;
   width: fit-content;
   margin-bottom: 4%;
+  animation: push-up 300ms ease-out both;
+  animation-delay: calc(var(--i) * 0.2s);
 }
 
 .photocontainer:hover {
@@ -318,6 +320,7 @@ img {
   max-width: 75%;
   max-height: 90%;
   overflow: hidden;
+  animation: blow-up 300ms ease-out both;
 }
 
 #modelcontainer .reactions {
@@ -422,5 +425,27 @@ img {
 @media only screen and (min-width: 900px) {
   .photocol {
     flex-basis: 32.25%;
+  }
+}
+
+@keyframes blow-up {
+  from {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes push-up {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
